@@ -1,0 +1,11 @@
+FROM python:3.7
+LABEL maintainer "developmentseed"
+ENV PATH=/script:$PATH
+ENV PYTHONPATH  "${PYTHONPATH}:/script"
+COPY /ml /script
+WORKDIR /script
+
+RUN pip install --no-cache-dir -r requirements.txt
+RUN python setup.py install
+VOLUME /mnt/data
+WORKDIR /mnt/data
